@@ -7,10 +7,20 @@ static void	swap(t_stack *stack)
 
 	if (stack->size < 2)
 		return ;
-	
-	tmp->value = stack->top->value;
-	stack->top->value = stack->top->next->value;
-	stack->top->next->value = tmp->value;
+	tmp = stack->top;
+	stack->top = tmp->next;
+	stack->top->prev = NULL;
+	if (stack->top->next)
+	{
+		tmp->next = stack->top->next;
+		stack->top->next->prev = tmp;
+	}
+	else
+		tmp->next = NULL;
+	stack->top->next = tmp;
+	tmp->prev = stack->top;
+
+
 }
 
 

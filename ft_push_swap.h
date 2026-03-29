@@ -33,6 +33,12 @@ typedef struct s_config
 }	t_config;
 
 void	ft_printf(char *str);
+void	stack_push(t_stack *stack, int data);
+void	stack_pop(t_stack *stack);
 void	sa(t_stack **stack_a);
+void	sb(t_stack **stack_b);
+void	ss(t_stack **stack_a, t_stack **stack_b);
+void	pa(t_stack **stack_a, t_stack **stack_b);
+void    pb(t_stack **stack_a, t_stack **stack_b);
 
 # endif

@@ -1,5 +1,3 @@
-#include "ft_push_swap.h"
-
 void	ft_printf(char *str)
 {
 	int	i;
