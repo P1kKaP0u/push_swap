@@ -6,45 +6,47 @@
 /*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 17:58:03 by muaktas           #+#    #+#             */
-/*   Updated: 2026/04/05 17:11:01 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/04/05 17:13:18 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 #include <stdio.h>
 #include "swap.c"
+#include "push.c"
 
 
 int	main()
 {
 	t_stack	*stack_a = stack_new();
-	t_stack *stack_b = stack_new();
 
-	stack_push(stack_a, 345);
+	stack_push(stack_a, 23);
+	stack_push(stack_a, 97);
+	stack_push(stack_a, 4);
+	stack_push(stack_a, 34);
+	stack_push(stack_a, 65);
 
+	// t_list	*min = find_min(stack_a);
+	// t_list	*max = find_max(stack_a);
+	// printf("EN GÜÇCUK DEĞER : %d, index: %d\n", min->value, find_index(min, stack_a));
+	// printf("EN BÖYÜK DEĞER : %d, index: %d\n", max->value, find_index(max, stack_a));
+	t_list *tmp = stack_a->top;
 
-	stack_push(stack_b, 98);
-
-	t_list *tmp_a;
-	t_list *tmp_b;
-
-	ss(&stack_a, &stack_b);
-	tmp_a = stack_a->top;
-	tmp_b = stack_b->top;
-	printf("***STACK_A***\n");
-	while (tmp_a)
+	while (tmp)
 	{
-		printf("%d\n", tmp_a->value);
-		tmp_a = tmp_a->next;
+		printf("normal değer: %d\n", tmp->value);
+		tmp = tmp->next;
 	}
-	printf("***STACK_B***\n");
-	while (tmp_b)
+	rank_normalize(stack_a);
+	t_list *tmp1 = stack_a->top;
+
+	while (tmp1)
 	{
-		printf("%d\n", tmp_b->value);
-		tmp_b = tmp_b->next;
+		printf("yeni değer index: %d\n", tmp1->value);
+		tmp1 = tmp1->next;
 	}
+	
 
 	stack_free(stack_a);
-	stack_free(stack_b);
 
 }

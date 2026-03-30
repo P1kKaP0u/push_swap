@@ -19,10 +19,7 @@ static void	swap(t_stack *stack)
 		tmp->next = NULL;
 	stack->top->next = tmp;
 	tmp->prev = stack->top;
-
-
 }
-
 
 void	sa(t_stack **stack_a)
 {	
