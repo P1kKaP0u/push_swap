@@ -3,7 +3,7 @@
 
 static void	swap(t_stack *stack)
 {	
-	t_list *tmp;
+	t_node *tmp;
 
 	if (stack->size < 2)
 		return ;

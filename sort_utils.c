@@ -1,9 +1,9 @@
 #include "ft_push_swap.h"
 
-t_list  *find_min(t_stack *stack)
+t_node  *find_min(t_stack *stack)
 {
-    t_list  *tmp;
-    t_list  *min;
+    t_node  *tmp;
+    t_node  *min;
 
     tmp = stack->top;
     if (!stack || !stack->top)
@@ -18,10 +18,10 @@ t_list  *find_min(t_stack *stack)
     return (min);
 }
 
-t_list  *find_max(t_stack *stack)
+t_node *find_max(t_stack *stack)
 {
-    t_list  *tmp;
-    t_list  *max;
+    t_node *tmp;
+    t_node  *max;
 
     if (!stack || !stack->top)
 	    return (NULL);
@@ -36,9 +36,9 @@ t_list  *find_max(t_stack *stack)
     return (max);
 }
 
-unsigned int    find_index(t_list *node, t_stack *stack)
+unsigned int    find_index(t_node *node, t_stack *stack)
 {
-    t_list          *tmp;
+    t_node          *tmp;
     unsigned int    index;
 
     if (!node || !stack)

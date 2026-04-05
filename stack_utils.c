@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 17:31:05 by muaktas           #+#    #+#             */
-/*   Updated: 2026/03/25 18:07:28 by muaktas          ###   ########.fr       */
+/*   Updated: 2026/04/05 18:01:04 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ t_stack	*stack_new(void)
 
 void	stack_push(t_stack *stack, int data)
 {
-	t_list	*new_node;
+	t_node	*new_node;
 
-	new_node = malloc(sizeof(t_list));
+	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 		return ;
 	new_node->value = data;
@@ -51,7 +51,7 @@ void	stack_push(t_stack *stack, int data)
 
 void	stack_pop(t_stack *stack)
 {
-	t_list	*tmp;
+	t_node	*tmp;
 
 	tmp = stack->top;
 	if (stack->size == 1)
@@ -70,7 +70,7 @@ void	stack_pop(t_stack *stack)
 
 int	stack_is_sorted(t_stack *stack)
 {
-	t_list	*tmp;
+	t_node	*tmp;
 
 	tmp = stack->top;
 	while (tmp && tmp->next)

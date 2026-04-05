@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muhakgul <muhakgul@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 18:46:55 by muhakgul          #+#    #+#             */
-/*   Updated: 2026/03/30 03:53:30 by muhakgul         ###   ########.fr       */
+/*   Updated: 2026/04/05 17:59:36 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int    is_valid_number(const char *str)
 
 int     has_duplicate(t_stack *stack, int value)
 {
-    t_list *current;
+    t_node *current;
     
     current = stack->top;
     while (current != NULL)

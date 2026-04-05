@@ -2,7 +2,7 @@
 
 void    push(t_stack *from, t_stack *to)
 {
-    t_list  *temp;
+    t_node  *temp;
 
     temp = from->top;
     from->top = temp->next;

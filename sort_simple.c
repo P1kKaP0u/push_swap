@@ -2,7 +2,7 @@
 
 static void min_value_to_top(t_stack *stack_a)
 {
-    t_list  *min_value;
+    t_node  *min_value;
     int min_index;
 
     min_value = find_min(stack_a);

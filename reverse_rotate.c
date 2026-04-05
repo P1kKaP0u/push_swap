@@ -6,7 +6,7 @@
 /*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 15:33:57 by muhakgul          #+#    #+#             */
-/*   Updated: 2026/04/05 17:17:34 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/04/05 18:00:06 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void reverse_rotate(t_stack *stack)
 {
-    t_list *tmp;
+    t_node *tmp;
     
     if (stack->size < 2)
         return;

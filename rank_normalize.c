@@ -26,7 +26,7 @@ static void sort_for_rank(int *numbers)
 
 static void map_to_list(int *numbers, t_stack *stack)
 {
-    t_list  *tmp;
+    t_node  *tmp;
     int     i;
 
     tmp = stack->top;
@@ -47,7 +47,7 @@ static void map_to_list(int *numbers, t_stack *stack)
 
 void    rank_normalize(t_stack *stack)
 {
-    t_list *tmp;
+    t_node *tmp;
     int *numbers;
     int i;
 

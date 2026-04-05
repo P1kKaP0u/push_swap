@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muhakgul <muhakgul@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 03:59:18 by muhakgul          #+#    #+#             */
-/*   Updated: 2026/04/05 15:32:47 by muhakgul         ###   ########.fr       */
+/*   Updated: 2026/04/05 18:00:13 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void rotate(t_stack *stack)
 {
-    t_list *tmp;
+    t_node *tmp;
 
     
     if (stack->size < 2)

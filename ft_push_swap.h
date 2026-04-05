@@ -4,17 +4,17 @@
 # include <unistd.h>
 # include "libft.h"
 
-typedef struct s_list
+typedef struct s_node
 {
 	int				value;
-	struct s_list	*next;
-	struct s_list	*prev;
-}	t_list;
+	struct s_node	*next;
+	struct s_node	*prev;
+}	t_node;
 
 typedef	struct s_stack
 {
-	t_list	*top;
-	t_list	*bottom;
+	t_node	*top;
+	t_node	*bottom;
 	int		size;
 } 	t_stack;
 
@@ -35,6 +35,8 @@ typedef struct s_config
 void	ft_printf(char *str);
 void	stack_push(t_stack *stack, int data);
 void	stack_pop(t_stack *stack);
+void	stack_free(t_stack *stack);
+t_stack	*stack_new(void);
 void	sa(t_stack **stack_a);
 void	sb(t_stack **stack_b);
 void	ss(t_stack **stack_a, t_stack **stack_b);
@@ -46,8 +48,9 @@ void    rr(t_stack *stack_a, t_stack *stack_b);
 void    rra(t_stack *stack_a);
 void    rrb(t_stack *stack_b);
 void    rrr(t_stack *stack_a, t_stack *stack_b);
-t_list  *find_min(t_stack *stack);
+t_node  *find_min(t_stack *stack);
+void    sort_simple(t_stack *stack_a, t_stack *stack_b);
 
-unsigned int    find_index(t_list *node, t_stack *stack);
+unsigned int    find_index(t_node *node, t_stack *stack);
 
 # endif
