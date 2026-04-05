@@ -6,7 +6,7 @@
 /*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 18:46:55 by muhakgul          #+#    #+#             */
-/*   Updated: 2026/04/05 17:59:36 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/04/05 18:12:45 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,14 @@ int     has_duplicate(t_stack *stack, int value)
     return (0);
 }
 
+void    error_exit(t_stack *stack)
+{
+    write(2, "Error\n", 6);
+    if (stack)
+        stack_free(stack);
+    exit(1);
+}
+
 int     parse_flags(int argc, char **argv, t_config *config)
 {
     
@@ -76,14 +84,6 @@ int     parse_flags(int argc, char **argv, t_config *config)
             break;
     }
     return (i);
-}
-
-void    error_exit(t_stack *stack)
-{
-    write(2, "Error\n", 6);
-    if (stack)
-        stack_free(stack);
-    exit(1);
 }
 
 t_stack     *parse_args(int argc, char **argv, t_config *config)

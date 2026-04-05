@@ -1,5 +1,4 @@
 #include "ft_push_swap.h"
-#include "utils.c"
 
 static void	swap(t_stack *stack)
 {	

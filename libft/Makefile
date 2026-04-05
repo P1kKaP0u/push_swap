@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                          :::      ::::::::   #
-#   Makefile                                             :+:      :+:    :+:   #
-#                                                      +:+ +:+         +:+     #
-#   By: muhakgul <muhakgul@student.42istanbul.com.tr>+#+  +:+       +#+        #
-#                                                  +#+#+#+#+#+   +#+           #
-#   Created: 2026/01/08 16:50:16 by muhakgul            #+#    #+#             #
-#   Updated: 2026/01/31 10:40:43 by muhakgul           ###   ########.fr       #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: Invalid Date        by uhakgul           #+#    #+#              #
+#    Updated: 2026/04/05 18:18:39 by mustafa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ CFLAGS	= -Wall -Wextra -Werror
 RM		= rm -f
 
 SRCS	=ft_atoi.c \
+       ft_atol.c \
        ft_bzero.c \
        ft_calloc.c \
        ft_isalnum.c \

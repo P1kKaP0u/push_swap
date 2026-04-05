@@ -6,15 +6,12 @@
 /*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 17:58:03 by muaktas           #+#    #+#             */
-/*   Updated: 2026/04/05 18:01:30 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/04/05 18:14:56 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 #include <stdio.h>
-#include "swap.c"
-#include "push.c"
-
 
 int	main()
 {

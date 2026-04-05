@@ -53,4 +53,4 @@ void    sort_simple(t_stack *stack_a, t_stack *stack_b);
 
 unsigned int    find_index(t_node *node, t_stack *stack);
 
-# endif
+#endif

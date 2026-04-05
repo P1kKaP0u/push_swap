@@ -6,7 +6,7 @@
 /*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 16:50:16 by muhakgul          #+#    #+#             */
-/*   Updated: 2026/04/05 17:51:15 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/04/05 18:11:28 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
 int					ft_atoi(const char *nptr);
+long				ft_atol(const char *nptr);
 
 /* Malloc Wrapper */
 void				*ft_calloc(size_t nmemb, size_t size);

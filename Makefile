@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: muhakgul <muhakgul@student.42istanbul.c    +#+  +:+       +#+         #
+#    By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/29 02:19:24 by muhakgul          #+#    #+#              #
-#    Updated: 2026/04/05 14:06:36 by muhakgul         ###   ########.fr        #
+#    Updated: 2026/04/05 18:57:48 by mustafa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,16 @@ RM      = rm -f
 LIBFT_DIR = libft
 LIBFT     = $(LIBFT_DIR)/libft.a
 
-SRCS    = swap.c \
-          utils.c \
+SRCS    = utils.c \
+		  parse_args.c \
+		  push.c \
+		  rank_normalize.c \
+		  reverse_rotate.c \
+		  rotate.c \
+		  sort_simple.c \
           stack_utils.c \
-          parse_args.c \
+		  sort_utils.c \
+		  swap.c \
           main.c
 
 OBJS    = $(SRCS:.c=.o)
