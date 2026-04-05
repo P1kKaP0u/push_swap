@@ -41,5 +41,6 @@ void	ss(t_stack **stack_a, t_stack **stack_b);
 void	pa(t_stack **stack_a, t_stack **stack_b);
 void    pb(t_stack **stack_a, t_stack **stack_b);
 t_list  *find_min(t_stack *stack);
+unsigned int    find_index(t_list *node, t_stack *stack);
 
 # endif

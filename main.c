@@ -6,7 +6,7 @@
 /*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 17:58:03 by muaktas           #+#    #+#             */
-/*   Updated: 2026/04/05 17:13:18 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/04/05 17:15:00 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	main()
 {
 	t_stack	*stack_a = stack_new();
 
-	stack_push(stack_a, 23);
+	stack_push(stack_a, -23);
 	stack_push(stack_a, 97);
 	stack_push(stack_a, 4);
-	stack_push(stack_a, 34);
+	stack_push(stack_a, -34);
 	stack_push(stack_a, 65);
 
 	// t_list	*min = find_min(stack_a);
