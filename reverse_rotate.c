@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muhakgul <muhakgul@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 15:33:57 by muhakgul          #+#    #+#             */
-/*   Updated: 2026/04/05 16:57:24 by muhakgul         ###   ########.fr       */
+/*   Updated: 2026/04/05 17:17:34 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void reverse_rotate(t_stack *stack)
         return;
     tmp = stack->bottom;
     stack->bottom = tmp->prev;
-    stack->bottom-next = NULL;
+    stack->bottom->next = NULL;
     tmp->prev = NULL;
 
     tmp->next = stack->top;

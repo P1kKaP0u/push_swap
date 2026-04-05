@@ -11,14 +11,14 @@ static void min_value_to_top(t_stack *stack_a)
     {
         while (find_index(min_value, stack_a) != 0)
         {
-            // will use ra
+            ra(stack_a);
         }
     }
     else
     {
         while (find_index(min_value, stack_a) != 0)
         {
-            //will use rra
+            rra(stack_a);
         }
     }
 }
