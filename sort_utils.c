@@ -1,6 +1,6 @@
 #include "ft_push_swap.h"
 
-t_node  *find_min(t_stack *stack)
+t_node	*find_min(t_stack *stack)
 {
     t_node  *tmp;
     t_node  *min;
@@ -18,7 +18,7 @@ t_node  *find_min(t_stack *stack)
     return (min);
 }
 
-t_node *find_max(t_stack *stack)
+t_node	*find_max(t_stack *stack)
 {
     t_node *tmp;
     t_node  *max;

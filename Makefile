@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+         #
+#    By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/29 02:19:24 by muhakgul          #+#    #+#              #
-#    Updated: 2026/04/05 18:57:48 by mustafa          ###   ########.fr        #
+#    Updated: 2026/04/06 16:33:32 by muaktas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS    = utils.c \
 		  rank_normalize.c \
 		  reverse_rotate.c \
 		  rotate.c \
+		  sort_complex.c \
 		  sort_simple.c \
           stack_utils.c \
 		  sort_utils.c \

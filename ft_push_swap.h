@@ -36,6 +36,7 @@ void	ft_printf(char *str);
 void	stack_push(t_stack *stack, int data);
 void	stack_pop(t_stack *stack);
 void	stack_free(t_stack *stack);
+int		stack_is_sorted(t_stack *stack);
 t_stack	*stack_new(void);
 void	sa(t_stack **stack_a);
 void	sb(t_stack **stack_b);
@@ -49,7 +50,10 @@ void    rra(t_stack *stack_a);
 void    rrb(t_stack *stack_b);
 void    rrr(t_stack *stack_a, t_stack *stack_b);
 t_node  *find_min(t_stack *stack);
+t_node	*find_max(t_stack *stack);
+void    rank_normalize(t_stack *stack);
 void    sort_simple(t_stack *stack_a, t_stack *stack_b);
+void    sort_complex(t_stack *stack_a, t_stack *stack_b);
 
 unsigned int    find_index(t_node *node, t_stack *stack);
 
