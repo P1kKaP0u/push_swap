@@ -16,17 +16,21 @@ static void rotate(t_stack *stack)
 {
     t_node *tmp;
 
-    
-    if (stack->size < 2)
+    if (!stack || stack->size < 2 || !stack->top || !stack->bottom)
         return;
+
     tmp = stack->top;
+
     stack->top = tmp->next;
-    stack->top->prev = NULL;
-    
-    stack->bottom->next = tmp;
-    tmp->prev = stack->bottom;
+    if (stack->top)
+        stack->top->prev = NULL;
+
     tmp->next = NULL;
-    
+    tmp->prev = stack->bottom;
+
+    if (stack->bottom)
+        stack->bottom->next = tmp;
+
     stack->bottom = tmp;
 }
 

@@ -13,49 +13,65 @@
 #include "ft_push_swap.h"
 #include <stdio.h>
 
-int	main()
+double compute_disorder(t_stack *stack_a)
 {
-	t_stack	*stack_a = stack_new();
-	t_stack	*stack_b = stack_new();
+	int total_inversions = 0;
+	int max_inversions = 0;
 
-	// stack_push(stack_a, 13124142);
-	// stack_push(stack_a, 97);
-	// stack_push(stack_a, 4);
-	// stack_push(stack_a, 34);
-	// stack_push(stack_a, 29);
-	// stack_push(stack_a, 3643234);
-	// stack_push(stack_a, 12);
-	// stack_push(stack_a, 0);
-	// stack_push(stack_a, 123143);
-
-	int i = 0;
-	while (i < 600)
+	t_node *head = stack_a->top;
+	t_node *tmp;
+	while(head->next)
 	{
-		stack_push(stack_a, i);
-		i++;
+		tmp = head->next;
+		while(tmp)
+		{
+			if(head->value > tmp->value)
+				total_inversions++;
+			tmp = tmp->next;
+		}
+		head = head->next;
 	}
-	
+	max_inversions = (stack_a->size * (stack_a->size -1)) / 2;
+	return ((double)total_inversions / (double)max_inversions);
+}
 
+void	exe_strategy(t_stack *stack_a, t_stack *stack_b, t_config *config)
+{
+		double disorder;
 
-	//65-34-4-97-23
+		if (config->strategy == STRAT_ADAPTIVE)
+		{
+			disorder = compute_disorder(stack_a);
+			if (disorder < 0.2)
+				config->strategy = STRAT_SIMPLE;
+			else if (disorder < 0.5)
+				config->strategy = STRAT_MEDIUM;
+			else
+				config->strategy = STRAT_COMPLEX;
+		}
+		if (config->strategy == STRAT_SIMPLE)
+			sort_simple(stack_a, stack_b);
+		else if (config->strategy == STRAT_MEDIUM)
+			sort_medium(stack_a, stack_b);
+		else if (config->strategy == STRAT_COMPLEX)
+			sort_complex(stack_a, stack_b);
+}
 
-	
-	// t_list	*min = find_min(stack_a);
-	// t_list	*max = find_max(stack_a);
-	// printf("EN GÜÇCUK DEĞER : %d, index: %d\n", min->value, find_index(min, stack_a));
-	// printf("EN BÖYÜK DEĞER : %d, index: %d\n", max->value, find_index(max, stack_a));
-	sort_complex(stack_a, stack_b);
-	// sort_simple(stack_a, stack_b);
+int	main(int ac, char **av)
+{
+    t_node      *lst_a;
+    t_config    config;
+    t_stack     *stack_a;
+    t_stack     *stack_b;
 
+    lst_a = NULL;
+    stack_a = parse_args(ac, av, &config, lst_a);
+    if (!stack_a)
+        return (0);
+    stack_b = stack_new();
 
-	t_node *tmp = stack_a->top;
-
-	while (tmp)
-	{
-		printf("%d\n", tmp->value);
-		tmp = tmp->next;
-	}
-	stack_free(stack_a);
-	stack_free(stack_b);
-
+	exe_strategy(stack_a, stack_b, &config);
+    stack_free(stack_a);
+    stack_free(stack_b);
+    return (0);
 }

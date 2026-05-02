@@ -1,35 +1,51 @@
 #include "ft_push_swap.h"
 
-void    push(t_stack *from, t_stack *to)
+void push(t_stack *from, t_stack *to)
 {
-    t_node  *temp;
+    t_node *temp;
+
+    if (!from || !from->top)
+        return;
 
     temp = from->top;
     from->top = temp->next;
+
     if (from->top)
         from->top->prev = NULL;
-    temp->next = to->top;
-    temp->prev = NULL;
-    if (to->top)
-        to->top->prev = temp;
-    to->top = temp;
-    from->size = from->size - 1;
-    to->size = to->size + 1;
-}
 
-void	pa(t_stack **stack_a, t_stack **stack_b)
-{	
-	if (!stack_b || !*stack_b)
-		return ;
-    push(*stack_b, *stack_a);
+    // to empty stack case
+    if (!to->top)
+    {
+        to->top = temp;
+        to->bottom = temp;
+        temp->next = NULL;
+        temp->prev = NULL;
+    }
+    else
+    {
+        temp->next = to->top;
+        temp->prev = NULL;
+        to->top->prev = temp;
+        to->top = temp;
+    }
+
+    from->size--;
+    to->size++;
+}
+void pa(t_stack **a, t_stack **b)
+{
+    if (!b || !*b || !(*b)->top)
+        return;
+
+    push(*b, *a);
     ft_printf("pa\n");
 }
 
-void    pb(t_stack **stack_a, t_stack **stack_b)
-{   
-
-    if (!stack_a || !*stack_a)
+void pb(t_stack **a, t_stack **b)
+{
+    if (!a || !*a || !(*a)->top)
         return;
-    push(*stack_a, *stack_b);
+
+    push(*a, *b);
     ft_printf("pb\n");
 }

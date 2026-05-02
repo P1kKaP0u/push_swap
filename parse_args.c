@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_args.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/28 18:46:55 by muhakgul          #+#    #+#             */
-/*   Updated: 2026/04/05 18:12:45 by mustafa          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_push_swap.h"
 
 int    is_valid_number(const char *str)
@@ -56,7 +44,6 @@ void    error_exit(t_stack *stack)
 
 int     parse_flags(int argc, char **argv, t_config *config)
 {
-    
     int i;
     
     config->strategy = STRAT_ADAPTIVE;
@@ -86,31 +73,126 @@ int     parse_flags(int argc, char **argv, t_config *config)
     return (i);
 }
 
-t_stack     *parse_args(int argc, char **argv, t_config *config)
+int ft_checker(char **av)
 {
     int i;
-    int start;
-    long num;
-    
+    int j;
+
+    i = 0;
+    while (av[i])
+    {
+        j = 0;
+        while (av[i][j])
+        {
+            if (av[i][j] == ' ' || av[i][j] == '+'
+                || av[i][j] == '-'
+                || (av[i][j] >= '0' && av[i][j] <= '9'))
+                j++;
+            else
+                return (1);
+        }
+        i++;
+    }
+    return (0);
+}
+
+int ft_spcchk(char *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i])
+    {
+        if (str[i] == ' ')
+            return (1);
+        i++;
+    }
+    return (0);
+}
+
+t_node  *ft_reader(char **av, int start)
+{
+    int     i;
+    int     j;
+    char    **tmp;
+    t_node  *lst;
+    t_node  *new;
+    t_node  *head;  // BUG 1 FIX: başa alındı
+
+    i = start;
+    j = 0;
+    lst = NULL;
+    head = NULL;
+    while (av[i])
+    {
+        if (ft_spcchk(av[i]))
+        {
+            j = 0;
+            tmp = ft_split(av[i], ' ');
+            while (tmp[j])
+            {
+                new = malloc(sizeof(t_node));
+                if (!new)
+                    return (NULL);
+                if (!is_valid_number(tmp[j]))
+                    error_exit(NULL);
+                new->value = ft_atol(tmp[j]);
+                new->next = NULL;
+                if (!head)
+                    head = new;
+                else
+                    lst->next = new;
+                lst = new;
+                j++;
+            }
+        }
+        else
+        {
+            new = malloc(sizeof(t_node));
+            if (!new)
+                return (NULL);
+            if (!is_valid_number(av[i]))
+                error_exit(NULL);
+            new->value = ft_atol(av[i]);
+            if (new->value > 2147483647 || new->value < -2147483648)
+                error_exit(NULL);
+            new->next = NULL;
+            if (!head)
+                head = new;
+            else
+                lst->next = new;
+            lst = new;
+        }
+        i++;
+    }
+    return (head);
+}
+
+t_stack *parse_args(int ac, char **av, t_config *config, t_node *lst_a)
+{
+    int     start;
     t_stack *stack_a;
-    start = parse_flags(argc, argv, config);
-    if (start >= argc)
+    t_node  *tmp;
+    int     size;
+
+    start = parse_flags(ac, av, config);
+    if (start >= ac)
+        return (NULL);
+    lst_a = ft_reader(av, start);  // BUG 2 FIX: ac kaldı, start eklendi
+    if (!lst_a)
         return (NULL);
     stack_a = stack_new();
     if (!stack_a)
         return (NULL);
-    i = argc - 1;
-    while (i >= start)
+    stack_a->top = lst_a;
+    tmp = lst_a;
+    size = 0;
+    while (tmp && tmp->next)
     {
-        if (!is_valid_number(argv[i]))
-            error_exit(stack_a);
-        num = ft_atol(argv[i]);
-        if (num > 2147483647 || num < -2147483648)
-            error_exit(stack_a);
-        if (has_duplicate(stack_a, (int)num))
-            error_exit(stack_a);
-        stack_push(stack_a, (int)num);
-        i--;
+        size++;
+        tmp = tmp->next;
     }
+    stack_a->bottom = tmp;
+    stack_a->size = size + 1;  // BUG 3 FIX: son eleman da sayılıyor
     return (stack_a);
 }

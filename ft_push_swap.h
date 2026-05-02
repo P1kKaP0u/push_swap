@@ -1,4 +1,4 @@
-#ifndef FT_PUSH_SWAP_H
+# ifndef FT_PUSH_SWAP_H
 # define FT_PUSH_SWAP_H
 # include <stdlib.h>
 # include <unistd.h>
@@ -32,6 +32,9 @@ typedef struct s_config
 	int			bench;
 }	t_config;
 
+
+void	sort_medium(t_stack *stack_a, t_stack *stack_b);
+t_stack *parse_args(int argc, char **argv, t_config *config, t_node *node);
 void	ft_printf(char *str);
 void	stack_push(t_stack *stack, int data);
 void	stack_pop(t_stack *stack);

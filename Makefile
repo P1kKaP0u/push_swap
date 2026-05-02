@@ -12,7 +12,7 @@
 
 NAME    = push_swap
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror
+CFLAGS  = -g -Wall -Wextra -Werror
 RM      = rm -f
 
 LIBFT_DIR = libft
@@ -29,7 +29,8 @@ SRCS    = utils.c \
           stack_utils.c \
 		  sort_utils.c \
 		  swap.c \
-          main.c
+          main.c \
+		  sort_medium.c \
 
 OBJS    = $(SRCS:.c=.o)
 
