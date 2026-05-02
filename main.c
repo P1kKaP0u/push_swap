@@ -39,6 +39,8 @@ void	exe_strategy(t_stack *stack_a, t_stack *stack_b, t_config *config)
 {
 		double disorder;
 
+		if (stack_a->size <= 1 || stack_is_sorted(stack_a))
+			return;
 		if (config->strategy == STRAT_ADAPTIVE)
 		{
 			disorder = compute_disorder(stack_a);

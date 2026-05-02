@@ -138,8 +138,12 @@ t_node  *ft_reader(char **av, int start)
                     error_exit(NULL);
                 new->value = ft_atol(tmp[j]);
                 new->next = NULL;
+                new->prev = lst;
                 if (!head)
+                {
                     head = new;
+                    new->prev = NULL;
+                }
                 else
                     lst->next = new;
                 lst = new;
@@ -157,8 +161,12 @@ t_node  *ft_reader(char **av, int start)
             if (new->value > 2147483647 || new->value < -2147483648)
                 error_exit(NULL);
             new->next = NULL;
+            new->prev = lst;
             if (!head)
+            {
                 head = new;
+                new->prev = NULL;
+            } 
             else
                 lst->next = new;
             lst = new;
