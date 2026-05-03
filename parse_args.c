@@ -114,10 +114,11 @@ t_node  *ft_reader(char **av, int start)
 {
     int     i;
     int     j;
+    long    val;
     char    **tmp;
     t_node  *lst;
     t_node  *new;
-    t_node  *head;  // BUG 1 FIX: başa alındı
+    t_node  *head;
 
     i = start;
     j = 0;
@@ -136,7 +137,10 @@ t_node  *ft_reader(char **av, int start)
                     return (NULL);
                 if (!is_valid_number(tmp[j]))
                     error_exit(NULL);
-                new->value = ft_atol(tmp[j]);
+                val = ft_atol(tmp[j]);
+                if (val > 2147483647 || val -2147483648)
+                    error_exit(NULL);
+                new->value = (int)val;
                 new->next = NULL;
                 new->prev = lst;
                 if (!head)
@@ -149,6 +153,10 @@ t_node  *ft_reader(char **av, int start)
                 lst = new;
                 j++;
             }
+            j = 0;
+            while (tmp[j])
+                free(tmp[j++]);
+            free(tmp);
         }
         else
         {
@@ -157,7 +165,10 @@ t_node  *ft_reader(char **av, int start)
                 return (NULL);
             if (!is_valid_number(av[i]))
                 error_exit(NULL);
-            new->value = ft_atol(av[i]);
+            val = ft_atol(av[i]);
+            if (val > 2147483647 || val < -2147483648)
+                error_exit(NULL);
+            new->value = (int)val;
             if (new->value > 2147483647 || new->value < -2147483648)
                 error_exit(NULL);
             new->next = NULL;
