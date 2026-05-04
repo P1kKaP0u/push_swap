@@ -138,7 +138,7 @@ t_node  *ft_reader(char **av, int start)
                 if (!is_valid_number(tmp[j]))
                     error_exit(NULL);
                 val = ft_atol(tmp[j]);
-                if (val > 2147483647 || val -2147483648)
+                if (val > 2147483647 || val < -2147483648)
                     error_exit(NULL);
                 new->value = (int)val;
                 new->next = NULL;
@@ -195,7 +195,9 @@ t_stack *parse_args(int ac, char **av, t_config *config, t_node *lst_a)
     start = parse_flags(ac, av, config);
     if (start >= ac)
         return (NULL);
-    lst_a = ft_reader(av, start);  // BUG 2 FIX: ac kaldı, start eklendi
+    if (ft_checker(av + start))
+        error_exit(NULL);
+    lst_a = ft_reader(av, start);
     if (!lst_a)
         return (NULL);
     stack_a = stack_new();
@@ -206,10 +208,12 @@ t_stack *parse_args(int ac, char **av, t_config *config, t_node *lst_a)
     size = 0;
     while (tmp && tmp->next)
     {
+        if (has_duplicate(stack_a, tmp->next->value))
+            error_exit(stack_a);
         size++;
         tmp = tmp->next;
     }
     stack_a->bottom = tmp;
-    stack_a->size = size + 1;  // BUG 3 FIX: son eleman da sayılıyor
+    stack_a->size = size + 1;
     return (stack_a);
 }
