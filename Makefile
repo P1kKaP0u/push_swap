@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+         #
+#    By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/29 02:19:24 by muhakgul          #+#    #+#              #
-#    Updated: 2026/04/06 16:33:32 by muaktas          ###   ########.fr        #
+#    Updated: 2026/05/04 19:01:44 by mustafa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SRCS    = utils.c \
 		  swap.c \
           main.c \
 		  sort_medium.c \
+		  sort_small.c \
+		  
 
 OBJS    = $(SRCS:.c=.o)
 

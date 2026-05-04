@@ -6,7 +6,7 @@
 /*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 02:20:58 by mustafa           #+#    #+#             */
-/*   Updated: 2026/05/04 02:28:11 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/05/04 19:01:24 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ void			rank_normalize(t_stack *stack);
 void			sort_simple(t_stack *stack_a, t_stack *stack_b);
 void			sort_complex(t_stack *stack_a, t_stack *stack_b);
 unsigned int	find_index(t_node *node, t_stack *stack);
+void			sort_small(t_stack *stack_a, t_stack *stack_b);
 
 #endif
