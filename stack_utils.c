@@ -6,7 +6,7 @@
 /*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 17:31:05 by muaktas           #+#    #+#             */
-/*   Updated: 2026/04/05 18:01:04 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/05/03 17:34:11 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ int	stack_is_sorted(t_stack *stack)
 
 	tmp = stack->top;
 	while (tmp && tmp->next)
-	{	
+	{
 		if (tmp->value > tmp->next->value)
-		{	
+		{
 			return (0);
 		}
 		tmp = tmp->next;
@@ -84,9 +84,8 @@ int	stack_is_sorted(t_stack *stack)
 	return (1);
 }
 
-void stack_free(t_stack *stack)
+void	stack_free(t_stack *stack)
 {
-
 	while (stack->top)
 	{
 		stack_pop(stack);

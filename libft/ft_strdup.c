@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muhakgul <muhakgul@student.42istanbul.com.t+#+  +:+       +#+        */
+/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 04:06:43 by muhakgul          #+#    #+#             */
-/*   Updated: 2026/01/31 15:36:40 by muhakgul         ###   ########.fr       */
+/*   Updated: 2026/05/04 02:34:32 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ char	*ft_strdup(const char *s)
 	copy[i] = '\0';
 	return (copy);
 }
-

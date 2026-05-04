@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/03 17:32:44 by mustafa           #+#    #+#             */
+/*   Updated: 2026/05/03 17:33:31 by mustafa          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_push_swap.h"
 
 static void	swap(t_stack *stack)
-{	
-	t_node *tmp;
+{
+	t_node	*tmp;
 
 	if (stack->size < 2)
 		return ;
@@ -21,7 +33,7 @@ static void	swap(t_stack *stack)
 }
 
 void	sa(t_stack **stack_a)
-{	
+{
 	if (!stack_a || !*stack_a)
 		return ;
 	swap(*stack_a);
@@ -37,7 +49,7 @@ void	sb(t_stack **stack_b)
 }
 
 void	ss(t_stack **stack_a, t_stack **stack_b)
-{	
+{
 	if (!stack_a || !*stack_a || !stack_b || !*stack_b)
 		return ;
 	swap(*stack_a);

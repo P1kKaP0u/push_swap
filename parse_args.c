@@ -169,8 +169,6 @@ t_node  *ft_reader(char **av, int start)
             if (val > 2147483647 || val < -2147483648)
                 error_exit(NULL);
             new->value = (int)val;
-            if (new->value > 2147483647 || new->value < -2147483648)
-                error_exit(NULL);
             new->next = NULL;
             new->prev = lst;
             if (!head)
