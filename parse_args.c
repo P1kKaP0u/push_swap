@@ -19,7 +19,7 @@ int    is_valid_number(const char *str)
     }
     return (1);
 }
-
+/*
 int     has_duplicate(t_stack *stack, int value)
 {
     t_node *current;
@@ -30,6 +30,18 @@ int     has_duplicate(t_stack *stack, int value)
         if (current->value == value)
             return (1);
         current = current->next;
+    }
+    return (0);
+}
+*/
+
+int duplicate_in_list(t_node *head, int value)
+{
+    while (head)
+    {
+        if (head->value == value)
+            return (1);
+        head = head->next;
     }
     return (0);
 }
@@ -141,6 +153,11 @@ t_node  *ft_reader(char **av, int start)
                 if (val > 2147483647 || val < -2147483648)
                     error_exit(NULL);
                 new->value = (int)val;
+                if (duplicate_in_list(head, new->value))
+                {
+                    free(new);
+                    error_exit(NULL);
+                }
                 new->next = NULL;
                 new->prev = lst;
                 if (!head)
@@ -169,6 +186,11 @@ t_node  *ft_reader(char **av, int start)
             if (val > 2147483647 || val < -2147483648)
                 error_exit(NULL);
             new->value = (int)val;
+            if (duplicate_in_list(head, new->value))
+            {
+                free(new);
+                error_exit(NULL);
+            }
             new->next = NULL;
             new->prev = lst;
             if (!head)
@@ -205,15 +227,13 @@ t_stack *parse_args(int ac, char **av, t_config *config, t_node *lst_a)
         return (NULL);
     stack_a->top = lst_a;
     tmp = lst_a;
-    size = 0;
-    while (tmp && tmp->next)
+    size = 1;
+    while (tmp->next)
     {
-        if (has_duplicate(stack_a, tmp->next->value))
-            error_exit(stack_a);
         size++;
         tmp = tmp->next;
     }
     stack_a->bottom = tmp;
-    stack_a->size = size + 1;
+    stack_a->size = size;
     return (stack_a);
 }

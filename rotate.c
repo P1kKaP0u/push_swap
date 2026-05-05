@@ -31,7 +31,7 @@ static void	rotate(t_stack *stack)
 
 void	ra(t_stack *stack_a)
 {
-	if (!stack_a)
+	if (!stack_a || stack->size < 2)
 		return ;
 	rotate(stack_a);
 	ft_printf("ra\n");

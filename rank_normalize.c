@@ -50,6 +50,7 @@ static void	map_to_list(int *numbers, t_stack *stack, int size)
 			if (tmp->value == numbers[i])
 			{
 				tmp->value = i;
+				break;
 			}
 			i++;
 		}
@@ -69,7 +70,7 @@ void	rank_normalize(t_stack *stack)
 	numbers = malloc(stack->size * sizeof(int));
 	size = stack->size;
 	if (!numbers)
-		return ;
+		return;
 	while (tmp != NULL)
 	{
 		numbers[i] = tmp->value;

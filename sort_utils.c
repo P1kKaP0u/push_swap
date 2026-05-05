@@ -17,9 +17,9 @@ t_node	*find_min(t_stack *stack)
 	t_node	*tmp;
 	t_node	*min;
 
-	tmp = stack->top;
 	if (!stack || !stack->top)
 		return (NULL);
+	tmp = stack->top;
 	min = tmp;
 	while (tmp)
 	{
