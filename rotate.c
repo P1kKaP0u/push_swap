@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 03:59:18 by muhakgul          #+#    #+#             */
-/*   Updated: 2026/05/04 02:11:43 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/05/06 20:52:17 by muaktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	rotate(t_stack *stack)
 
 void	ra(t_stack *stack_a)
 {
-	if (!stack_a || stack->size < 2)
+	if (!stack_a || stack_a->size < 2)
 		return ;
 	rotate(stack_a);
 	ft_printf("ra\n");

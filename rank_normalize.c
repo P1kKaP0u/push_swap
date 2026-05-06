@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rank_normalize.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 02:14:34 by mustafa           #+#    #+#             */
-/*   Updated: 2026/05/04 02:17:38 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/05/06 19:54:07 by muaktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	map_to_list(int *numbers, t_stack *stack, int size)
 			if (tmp->value == numbers[i])
 			{
 				tmp->value = i;
-				break;
+				break ;
 			}
 			i++;
 		}
@@ -70,7 +70,7 @@ void	rank_normalize(t_stack *stack)
 	numbers = malloc(stack->size * sizeof(int));
 	size = stack->size;
 	if (!numbers)
-		return;
+		return ;
 	while (tmp != NULL)
 	{
 		numbers[i] = tmp->value;

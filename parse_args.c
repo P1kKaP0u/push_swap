@@ -1,239 +1,237 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_args.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/06 20:54:36 by muaktas           #+#    #+#             */
+/*   Updated: 2026/05/06 21:03:43 by muaktas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_push_swap.h"
 
-int    is_valid_number(const char *str)
+int	is_valid_number(const char *str)
 {
-    int i;
-    
-    i = 0;
-    if (str[i] == '\0')
-        return (0);
-    if (str[i] == '+' || str[i] == '-')
-        i++;
-    if (str[i] == '\0')
-        return (0);
-    while (str[i])
-    {
-        if (str[i] < '0' || str[i] > '9')
-            return (0);
-        i++;
-    }
-    return (1);
-}
-/*
-int     has_duplicate(t_stack *stack, int value)
-{
-    t_node *current;
-    
-    current = stack->top;
-    while (current != NULL)
-    {
-        if (current->value == value)
-            return (1);
-        current = current->next;
-    }
-    return (0);
-}
-*/
+	int	i;
 
-int duplicate_in_list(t_node *head, int value)
-{
-    while (head)
-    {
-        if (head->value == value)
-            return (1);
-        head = head->next;
-    }
-    return (0);
+	i = 0;
+	if (str[i] == '\0')
+		return (0);
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	if (str[i] == '\0')
+		return (0);
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-void    error_exit(t_stack *stack)
+void	error_exit(t_stack *stack)
 {
-    write(2, "Error\n", 6);
-    if (stack)
-        stack_free(stack);
-    exit(1);
+	write(2, "Error\n", 6);
+	if (stack)
+		stack_free(stack);
+	exit(1);
 }
 
-int     parse_flags(int argc, char **argv, t_config *config)
+int	parse_flags(int argc, char **argv, t_config *config)
 {
-    int i;
-    
-    config->strategy = STRAT_ADAPTIVE;
-    config->bench = 0;
-    i = 1;
-    while (i < argc)
-    {
-        if (argv[i][0] == '-' && argv[i][1] == '-')
-        {
-            if (ft_strncmp(argv[i], "--simple", 9) == 0)
-                config->strategy = STRAT_SIMPLE;
-            else if (ft_strncmp(argv[i], "--medium", 9) == 0)
-                config->strategy = STRAT_MEDIUM;
-            else if (ft_strncmp(argv[i], "--complex", 10) == 0)
-                config->strategy = STRAT_COMPLEX;
-            else if (ft_strncmp(argv[i], "--adaptive", 11) == 0)
-                config->strategy = STRAT_ADAPTIVE;
-            else if (ft_strncmp(argv[i], "--bench", 8) == 0)
-                config->bench = 1;
-            else
-                error_exit(NULL);
-            i++;
-        }
-        else
-            break;
-    }
-    return (i);
+	int	i;
+
+	config->strategy = STRAT_ADAPTIVE;
+	config->bench = 0;
+	i = 1;
+	while (i < argc)
+	{
+		if (argv[i][0] == '-' && argv[i][1] == '-')
+		{
+			if (ft_strncmp(argv[i], "--simple", 9) == 0)
+				config->strategy = STRAT_SIMPLE;
+			else if (ft_strncmp(argv[i], "--medium", 9) == 0)
+				config->strategy = STRAT_MEDIUM;
+			else if (ft_strncmp(argv[i], "--complex", 10) == 0)
+				config->strategy = STRAT_COMPLEX;
+			else if (ft_strncmp(argv[i], "--adaptive", 11) == 0)
+				config->strategy = STRAT_ADAPTIVE;
+			else if (ft_strncmp(argv[i], "--bench", 8) == 0)
+				config->bench = 1;
+			else
+				error_exit(NULL);
+			i++;
+		}
+		else
+			break ;
+	}
+	return (i);
 }
 
-int ft_checker(char **av)
+int	ft_checker(char **av)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    while (av[i])
-    {
-        j = 0;
-        while (av[i][j])
-        {
-            if (av[i][j] == ' ' || av[i][j] == '+'
-                || av[i][j] == '-'
-                || (av[i][j] >= '0' && av[i][j] <= '9'))
-                j++;
-            else
-                return (1);
-        }
-        i++;
-    }
-    return (0);
+	i = 0;
+	while (av[i])
+	{
+		j = 0;
+		while (av[i][j])
+		{
+			if (av[i][j] == ' ' || av[i][j] == '+'
+				|| av[i][j] == '-'
+				|| (av[i][j] >= '0' && av[i][j] <= '9'))
+				j++;
+			else
+				return (1);
+		}
+		i++;
+	}
+	return (0);
 }
 
-int ft_spcchk(char *str)
+int	ft_spcchk(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] == ' ')
-            return (1);
-        i++;
-    }
-    return (0);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ')
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
-t_node  *ft_reader(char **av, int start)
+t_node	*ft_reader(char **av, int start)
 {
-    int     i;
-    int     j;
-    long    val;
-    char    **tmp;
-    t_node  *lst;
-    t_node  *new;
-    t_node  *head;
+	int		i;
+	int		j;
+	long	val;
+	char	**tmp;
+	t_node	*lst;
+	t_node	*new;
+	t_node	*head;
 
-    i = start;
-    j = 0;
-    lst = NULL;
-    head = NULL;
-    while (av[i])
-    {
-        if (ft_spcchk(av[i]))
-        {
-            j = 0;
-            tmp = ft_split(av[i], ' ');
-            while (tmp[j])
-            {
-                new = malloc(sizeof(t_node));
-                if (!new)
-                    return (NULL);
-                if (!is_valid_number(tmp[j]))
-                    error_exit(NULL);
-                val = ft_atol(tmp[j]);
-                if (val > 2147483647 || val < -2147483648)
-                    error_exit(NULL);
-                new->value = (int)val;
-                if (duplicate_in_list(head, new->value))
-                {
-                    free(new);
-                    error_exit(NULL);
-                }
-                new->next = NULL;
-                new->prev = lst;
-                if (!head)
-                {
-                    head = new;
-                    new->prev = NULL;
-                }
-                else
-                    lst->next = new;
-                lst = new;
-                j++;
-            }
-            j = 0;
-            while (tmp[j])
-                free(tmp[j++]);
-            free(tmp);
-        }
-        else
-        {
-            new = malloc(sizeof(t_node));
-            if (!new)
-                return (NULL);
-            if (!is_valid_number(av[i]))
-                error_exit(NULL);
-            val = ft_atol(av[i]);
-            if (val > 2147483647 || val < -2147483648)
-                error_exit(NULL);
-            new->value = (int)val;
-            if (duplicate_in_list(head, new->value))
-            {
-                free(new);
-                error_exit(NULL);
-            }
-            new->next = NULL;
-            new->prev = lst;
-            if (!head)
-            {
-                head = new;
-                new->prev = NULL;
-            } 
-            else
-                lst->next = new;
-            lst = new;
-        }
-        i++;
-    }
-    return (head);
+	i = start;
+	j = 0;
+	lst = NULL;
+	head = NULL;
+	while (av[i])
+	{
+		if (ft_spcchk(av[i]))
+		{
+			j = 0;
+			tmp = ft_split(av[i], ' ');
+			while (tmp[j])
+			{
+				new = malloc(sizeof(t_node));
+				if (!new)
+					return (NULL);
+				if (!is_valid_number(tmp[j]))
+					error_exit(NULL);
+				val = ft_atol(tmp[j]);
+				if (val > 2147483647 || val < -2147483648)
+					error_exit(NULL);
+				new->value = (int)val;
+				new->next = NULL;
+				new->prev = lst;
+				if (!head)
+				{
+					head = new;
+					new->prev = NULL;
+				}
+				else
+					lst->next = new;
+				lst = new;
+				j++;
+			}
+			j = 0;
+			while (tmp[j])
+				free(tmp[j++]);
+			free(tmp);
+		}
+		else
+		{
+			new = malloc(sizeof(t_node));
+			if (!new)
+				return (NULL);
+			if (!is_valid_number(av[i]))
+				error_exit(NULL);
+			val = ft_atol(av[i]);
+			if (val > 2147483647 || val < -2147483648)
+				error_exit(NULL);
+			new->value = (int)val;
+			new->next = NULL;
+			new->prev = lst;
+			if (!head)
+			{
+				head = new;
+				new->prev = NULL;
+			}
+			else
+				lst->next = new;
+			lst = new;
+		}
+		i++;
+	}
+	return (head);
 }
 
-t_stack *parse_args(int ac, char **av, t_config *config, t_node *lst_a)
+int	has_duplicate(t_node *node)
 {
-    int     start;
-    t_stack *stack_a;
-    t_node  *tmp;
-    int     size;
+	t_node	*check;
 
-    start = parse_flags(ac, av, config);
-    if (start >= ac)
-        return (NULL);
-    if (ft_checker(av + start))
-        error_exit(NULL);
-    lst_a = ft_reader(av, start);
-    if (!lst_a)
-        return (NULL);
-    stack_a = stack_new();
-    if (!stack_a)
-        return (NULL);
-    stack_a->top = lst_a;
-    tmp = lst_a;
-    size = 1;
-    while (tmp->next)
-    {
-        size++;
-        tmp = tmp->next;
-    }
-    stack_a->bottom = tmp;
-    stack_a->size = size;
-    return (stack_a);
+	while (node)
+	{
+		check = node->next;
+		while (check)
+		{
+			if (node->value == check->value)
+				return (1);
+			check = check->next;
+		}
+		node = node->next;
+	}
+	return (0);
+}
+
+t_stack	*parse_args(int ac, char **av, t_config *config, t_node *lst_a)
+{
+	int		start;
+	t_stack	*stack_a;
+	t_node	*tmp;
+	int		size;
+
+	start = parse_flags(ac, av, config);
+	if (start >= ac)
+		return (NULL);
+	if (ft_checker(av + start))
+		error_exit(NULL);
+	lst_a = ft_reader(av, start);
+	if (!lst_a)
+		return (NULL);
+	stack_a = stack_new();
+	if (!stack_a)
+		return (NULL);
+	stack_a->size = 0;
+	if (has_duplicate(lst_a))
+		error_exit(stack_a);
+	stack_a->top = lst_a;
+	tmp = lst_a;
+	size = 0;
+	while (tmp)
+	{
+		size++;
+		if (tmp->next == NULL)
+			stack_a->bottom = tmp;
+		tmp = tmp->next;
+	}
+	stack_a->size = size;
+	return (stack_a);
 }

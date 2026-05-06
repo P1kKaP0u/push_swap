@@ -6,7 +6,7 @@
 /*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 17:32:44 by mustafa           #+#    #+#             */
-/*   Updated: 2026/05/06 15:58:09 by muaktas          ###   ########.fr       */
+/*   Updated: 2026/05/06 19:47:14 by muaktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ static void	swap(t_stack *stack)
 	}
 	stack->top->next = tmp;
 	tmp->prev = stack->top;
-
-	if (stack->size == 2)
-		stack->bottom = tmp;
 }
 
 void	sa(t_stack **stack_a)
