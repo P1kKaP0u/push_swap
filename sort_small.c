@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 14:44:57 by mustafa           #+#    #+#             */
-/*   Updated: 2026/05/04 19:19:36 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/05/06 15:56:17 by muaktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	sort_small(t_stack *stack_a, t_stack *stack_b)
 	min = find_min(stack_a);
 	while (find_index(min, stack_a) != 0)
 	{
-		if (find_index(min, stack_a)  <= (unsigned int)stack_a->size / 2)
+		if (find_index(min, stack_a) <= (unsigned int)stack_a->size / 2)
 			ra(stack_a);
 		else
 			rra(stack_a);

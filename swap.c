@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 17:32:44 by mustafa           #+#    #+#             */
-/*   Updated: 2026/05/03 17:33:31 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/05/06 15:58:09 by muaktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ static void	swap(t_stack *stack)
 		stack->top->next->prev = tmp;
 	}
 	else
+	{
 		tmp->next = NULL;
+		stack->bottom = tmp;
+	}
 	stack->top->next = tmp;
 	tmp->prev = stack->top;
 
