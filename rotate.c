@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 03:59:18 by muhakgul          #+#    #+#             */
-/*   Updated: 2026/05/06 20:52:17 by muaktas          ###   ########.fr       */
+/*   Updated: 2026/05/13 22:20:07 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static void	rotate(t_stack *stack)
 {
 	t_node	*tmp;
 
-	if (!stack || stack->size < 2 || !stack->top || !stack->bottom)
-		return ;
 	tmp = stack->top;
 	stack->top = tmp->next;
 	if (stack->top)
@@ -39,7 +37,7 @@ void	ra(t_stack *stack_a)
 
 void	rb(t_stack *stack_b)
 {
-	if (!stack_b)
+	if (!stack_b || stack_b->size < 2)
 		return ;
 	rotate(stack_b);
 	ft_printf("rb\n");
@@ -47,7 +45,9 @@ void	rb(t_stack *stack_b)
 
 void	rr(t_stack *stack_a, t_stack *stack_b)
 {
-	if (!stack_a || !stack_b)
+	if (!stack_a || stack_a->size < 2)
+		return ;
+	if (!stack_b || stack_b->size < 2)
 		return ;
 	rotate(stack_a);
 	rotate(stack_b);

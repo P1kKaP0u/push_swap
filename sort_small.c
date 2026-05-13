@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 14:44:57 by mustafa           #+#    #+#             */
-/*   Updated: 2026/05/06 15:56:17 by muaktas          ###   ########.fr       */
+/*   Updated: 2026/05/13 22:12:06 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	sort_2(t_stack *stack)
 {
 	if ((stack)->top->value > (stack)->top->next->value)
 	{
-		sa(&stack);
+		sa(stack);
 	}
 }
 
@@ -51,7 +51,7 @@ void	sort_small(t_stack *stack_a, t_stack *stack_b)
 		else
 			rra(stack_a);
 	}
-	pb(&stack_a, &stack_b);
+	pb(stack_a, stack_b);
 	sort_small(stack_a, stack_b);
-	pa(&stack_a, &stack_b);
+	pa(stack_a, stack_b);
 }

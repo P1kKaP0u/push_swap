@@ -6,7 +6,7 @@
 /*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 17:41:49 by mustafa           #+#    #+#             */
-/*   Updated: 2026/05/03 17:44:07 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/05/13 22:09:21 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	sort_simple(t_stack *stack_a, t_stack *stack_b)
 	while (stack_a->size > 0)
 	{
 		min_value_to_top(stack_a);
-		pb(&stack_a, &stack_b);
+		pb(stack_a, stack_b);
 	}
 	while (stack_b->size > 0)
 	{
-		pa(&stack_a, &stack_b);
+		pa(stack_a, stack_b);
 	}
 }

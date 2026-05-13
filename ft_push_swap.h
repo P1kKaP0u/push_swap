@@ -6,7 +6,7 @@
 /*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 02:20:58 by mustafa           #+#    #+#             */
-/*   Updated: 2026/05/04 19:01:24 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/05/13 22:08:17 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ void			stack_pop(t_stack *stack);
 void			stack_free(t_stack *stack);
 int				stack_is_sorted(t_stack *stack);
 t_stack			*stack_new(void);
-void			sa(t_stack **stack_a);
-void			sb(t_stack **stack_b);
-void			ss(t_stack **stack_a, t_stack **stack_b);
-void			pa(t_stack **stack_a, t_stack **stack_b);
-void			pb(t_stack **stack_a, t_stack **stack_b);
+void			sa(t_stack *stack_a);
+void			sb(t_stack *stack_b);
+void			ss(t_stack *stack_a, t_stack *stack_b);
+void			pa(t_stack *stack_a, t_stack *stack_b);
+void			pb(t_stack *stack_a, t_stack *stack_b);
 void			ra(t_stack *stack_a);
 void			rb(t_stack *stack_b);
 void			rr(t_stack *stack_a, t_stack *stack_b);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 17:32:44 by mustafa           #+#    #+#             */
-/*   Updated: 2026/05/06 19:47:14 by muaktas          ###   ########.fr       */
+/*   Updated: 2026/05/13 22:01:08 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static void	swap(t_stack *stack)
 {
 	t_node	*tmp;
 
-	if (stack->size < 2)
-		return ;
 	tmp = stack->top;
 	stack->top = tmp->next;
 	stack->top->prev = NULL;
@@ -35,27 +33,27 @@ static void	swap(t_stack *stack)
 	tmp->prev = stack->top;
 }
 
-void	sa(t_stack **stack_a)
+void	sa(t_stack *stack_a)
 {
-	if (!stack_a || !*stack_a)
+	if (!stack_a || stack_a->size < 2)
 		return ;
-	swap(*stack_a);
+	swap(stack_a);
 	ft_printf("sa\n");
 }
 
-void	sb(t_stack **stack_b)
+void	sb(t_stack *stack_b)
 {
-	if (!stack_b || !*stack_b)
+	if (!stack_b || stack_b->size < 2)
 		return ;
-	swap(*stack_b);
+	swap(stack_b);
 	ft_printf("sb\n");
 }
 
-void	ss(t_stack **stack_a, t_stack **stack_b)
+void	ss(t_stack *stack_a, t_stack *stack_b)
 {
-	if (!stack_a || !*stack_a || !stack_b || !*stack_b)
+	if (!stack_a || !stack_b || stack_a->size < 2 || stack_b->size < 2)
 		return ;
-	swap(*stack_a);
-	swap(*stack_b);
+	swap(stack_a);
+	swap(stack_b);
 	ft_printf("ss\n");
 }

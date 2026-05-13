@@ -6,7 +6,7 @@
 /*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 02:18:43 by mustafa           #+#    #+#             */
-/*   Updated: 2026/05/04 18:10:07 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/05/13 22:07:49 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	push(t_stack *from, t_stack *to)
 {
 	t_node	*temp;
 
-	if (!from || !from->top)
-		return ;
 	temp = from->top;
 	from->top = temp->next;
 	if (from->top)
 		from->top->prev = NULL;
+	else
+		from->bottom = NULL;
 	if (!to->top)
 	{
 		to->top = temp;
@@ -40,18 +40,18 @@ void	push(t_stack *from, t_stack *to)
 	to->size++;
 }
 
-void	pa(t_stack **stack_a, t_stack **stack_b)
+void	pa(t_stack *stack_a, t_stack *stack_b)
 {
-	if (!stack_b || !*stack_b || !(*stack_b)->top)
+	if (!stack_b || stack_b->size == 0)
 		return ;
-	push(*stack_b, *stack_a);
+	push(stack_b, stack_a);
 	ft_printf("pa\n");
 }
 
-void	pb(t_stack **stack_a, t_stack **stack_b)
+void	pb(t_stack *stack_a, t_stack *stack_b)
 {
-	if (!stack_a || !*stack_a || !(*stack_a)->top)
+	if (!stack_a || stack_a->size == 0)
 		return ;
-	push(*stack_a, *stack_b);
+	push(stack_a, stack_b);
 	ft_printf("pb\n");
 }

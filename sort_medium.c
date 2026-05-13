@@ -6,7 +6,7 @@
 /*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 02:04:16 by mustafa           #+#    #+#             */
-/*   Updated: 2026/05/04 02:04:28 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/05/13 22:11:29 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	push_chunk_to_b(t_stack **stack_a, t_stack **stack_b,
 	{
 		val = (*stack_a)->top->value;
 		if (val >= chunk_min && val <= chunk_max)
-			pb(stack_a, stack_b);
+			pb(*stack_a, *stack_b);
 		else
 			ra(*stack_a);
 		size--;
@@ -84,6 +84,6 @@ void	sort_medium(t_stack *stack_a, t_stack *stack_b)
 	while (stack_b->size > 0)
 	{
 		bring_max_to_top(stack_b);
-		pa(&stack_a, &stack_b);
+		pa(stack_a, stack_b);
 	}
 }

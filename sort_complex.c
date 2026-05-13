@@ -6,7 +6,7 @@
 /*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 02:04:39 by mustafa           #+#    #+#             */
-/*   Updated: 2026/05/04 02:42:35 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/05/13 22:08:56 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	sort_complex(t_stack *stack_a, t_stack *stack_b)
 			if ((value >> bit) & 1)
 				ra(stack_a);
 			else
-				pb(&stack_a, &stack_b);
+				pb(stack_a, stack_b);
 			size--;
 		}
 		while (stack_b->size > 0)
-			pa(&stack_a, &stack_b);
+			pa(stack_a, stack_b);
 		bit++;
 	}
 }
