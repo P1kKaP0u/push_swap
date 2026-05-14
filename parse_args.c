@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:54:36 by muaktas           #+#    #+#             */
-/*   Updated: 2026/05/06 21:03:43 by muaktas          ###   ########.fr       */
+/*   Updated: 2026/05/14 07:33:11 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
-
-int	is_valid_number(const char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str[i] == '\0')
-		return (0);
-	if (str[i] == '+' || str[i] == '-')
-		i++;
-	if (str[i] == '\0')
-		return (0);
-	while (str[i])
-	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 void	error_exit(t_stack *stack)
 {
@@ -38,37 +18,6 @@ void	error_exit(t_stack *stack)
 	if (stack)
 		stack_free(stack);
 	exit(1);
-}
-
-int	parse_flags(int argc, char **argv, t_config *config)
-{
-	int	i;
-
-	config->strategy = STRAT_ADAPTIVE;
-	config->bench = 0;
-	i = 1;
-	while (i < argc)
-	{
-		if (argv[i][0] == '-' && argv[i][1] == '-')
-		{
-			if (ft_strncmp(argv[i], "--simple", 9) == 0)
-				config->strategy = STRAT_SIMPLE;
-			else if (ft_strncmp(argv[i], "--medium", 9) == 0)
-				config->strategy = STRAT_MEDIUM;
-			else if (ft_strncmp(argv[i], "--complex", 10) == 0)
-				config->strategy = STRAT_COMPLEX;
-			else if (ft_strncmp(argv[i], "--adaptive", 11) == 0)
-				config->strategy = STRAT_ADAPTIVE;
-			else if (ft_strncmp(argv[i], "--bench", 8) == 0)
-				config->bench = 1;
-			else
-				error_exit(NULL);
-			i++;
-		}
-		else
-			break ;
-	}
-	return (i);
 }
 
 int	ft_checker(char **av)
@@ -94,119 +43,49 @@ int	ft_checker(char **av)
 	return (0);
 }
 
-int	ft_spcchk(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == ' ')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-t_node	*ft_reader(char **av, int start)
-{
-	int		i;
-	int		j;
-	long	val;
-	char	**tmp;
-	t_node	*lst;
-	t_node	*new;
-	t_node	*head;
-
-	i = start;
-	j = 0;
-	lst = NULL;
-	head = NULL;
-	while (av[i])
-	{
-		if (ft_spcchk(av[i]))
-		{
-			j = 0;
-			tmp = ft_split(av[i], ' ');
-			while (tmp[j])
-			{
-				new = malloc(sizeof(t_node));
-				if (!new)
-					return (NULL);
-				if (!is_valid_number(tmp[j]))
-					error_exit(NULL);
-				val = ft_atol(tmp[j]);
-				if (val > 2147483647 || val < -2147483648)
-					error_exit(NULL);
-				new->value = (int)val;
-				new->next = NULL;
-				new->prev = lst;
-				if (!head)
-				{
-					head = new;
-					new->prev = NULL;
-				}
-				else
-					lst->next = new;
-				lst = new;
-				j++;
-			}
-			j = 0;
-			while (tmp[j])
-				free(tmp[j++]);
-			free(tmp);
-		}
-		else
-		{
-			new = malloc(sizeof(t_node));
-			if (!new)
-				return (NULL);
-			if (!is_valid_number(av[i]))
-				error_exit(NULL);
-			val = ft_atol(av[i]);
-			if (val > 2147483647 || val < -2147483648)
-				error_exit(NULL);
-			new->value = (int)val;
-			new->next = NULL;
-			new->prev = lst;
-			if (!head)
-			{
-				head = new;
-				new->prev = NULL;
-			}
-			else
-				lst->next = new;
-			lst = new;
-		}
-		i++;
-	}
-	return (head);
-}
-
-int	has_duplicate(t_node *node)
+int	has_duplicate(t_stack *stack)
 {
 	t_node	*check;
+	t_node	*tmp;
 
-	while (node)
+	tmp = stack->top;
+	while (tmp)
 	{
-		check = node->next;
+		check = tmp->next;
 		while (check)
 		{
-			if (node->value == check->value)
+			if (tmp->value == check->value)
 				return (1);
 			check = check->next;
 		}
-		node = node->next;
+		tmp = tmp->next;
 	}
 	return (0);
+}
+
+static void	finale_stack(t_stack *stack, t_node *lst)
+{
+	t_node	*tmp;
+	int		size;
+
+	stack->size = 0;
+	stack->top = lst;
+	tmp = lst;
+	size = 0;
+	while (tmp)
+	{
+		size++;
+		if (tmp->next == NULL)
+			stack->bottom = tmp;
+		tmp = tmp->next;
+	}
+	stack->size = size;
 }
 
 t_stack	*parse_args(int ac, char **av, t_config *config, t_node *lst_a)
 {
 	int		start;
 	t_stack	*stack_a;
-	t_node	*tmp;
-	int		size;
 
 	start = parse_flags(ac, av, config);
 	if (start >= ac)
@@ -219,19 +98,8 @@ t_stack	*parse_args(int ac, char **av, t_config *config, t_node *lst_a)
 	stack_a = stack_new();
 	if (!stack_a)
 		return (NULL);
-	stack_a->size = 0;
-	if (has_duplicate(lst_a))
+	finale_stack(stack_a, lst_a);
+	if (has_duplicate(stack_a))
 		error_exit(stack_a);
-	stack_a->top = lst_a;
-	tmp = lst_a;
-	size = 0;
-	while (tmp)
-	{
-		size++;
-		if (tmp->next == NULL)
-			stack_a->bottom = tmp;
-		tmp = tmp->next;
-	}
-	stack_a->size = size;
 	return (stack_a);
 }

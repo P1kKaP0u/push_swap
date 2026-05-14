@@ -6,7 +6,7 @@
 #    By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/29 02:19:24 by muhakgul          #+#    #+#              #
-#    Updated: 2026/05/04 19:01:44 by mustafa          ###   ########.fr        #
+#    Updated: 2026/05/14 06:51:04 by mustafa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ LIBFT     = $(LIBFT_DIR)/libft.a
 
 SRCS    = utils.c \
 		  parse_args.c \
+		  ft_reader.c \
+		  parse_flags.c \
 		  push.c \
 		  rank_normalize.c \
 		  reverse_rotate.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 17:58:03 by muaktas           #+#    #+#             */
-/*   Updated: 2026/05/06 15:56:51 by muaktas          ###   ########.fr       */
+/*   Updated: 2026/05/14 07:55:50 by mustafa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	exe_strategy(t_stack *stack_a, t_stack *stack_b, t_config *config)
 
 	if (stack_a->size <= 1 || stack_is_sorted(stack_a))
 		return ;
-	if (stack_a->size <= 5)
-		return (sort_small(stack_a, stack_b));
 	if (config->strategy == STRAT_ADAPTIVE)
 	{
+		if (stack_a->size <= 5)
+			return (sort_small(stack_a, stack_b));
 		disorder = compute_disorder(stack_a);
 		if (disorder < 0.2)
 			config->strategy = STRAT_SIMPLE;
