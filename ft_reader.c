@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_reader.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 17:58:03 by muaktas           #+#    #+#             */
-/*   Updated: 2026/05/14 06:57:28 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/05/16 15:51:36 by muaktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	is_valid_number(const char *str)
 	int	i;
 
 	i = 0;
-	if (str[i] == '\0')
+	if (!str)
 		return (0);
 	if (str[i] == '+' || str[i] == '-')
 		i++;
@@ -46,77 +46,52 @@ static int	ft_spcchk(char *str)
 	return (0);
 }
 
-t_node	*ft_reader(char **av, int start)
+static long	parse_value(char *str)
+{
+	long	val;
+
+	if (!is_valid_number(str))
+		error_exit(NULL);
+	val = ft_atol(str);
+	if (val > 2147483647 || val < -2147483648)
+		error_exit(NULL);
+	return (val);
+}
+
+static void	free_split(char **tmp)
+{
+	int	i;
+
+	i = 0;
+	if (!tmp)
+		return ;
+	while (tmp[i])
+		free(tmp[i++]);
+	free(tmp);
+}
+
+void	ft_reader(char **av, int start, t_stack *stack)
 {
 	int		i;
 	int		j;
-	long	val;
 	char	**tmp;
-	t_node	*lst;
-	t_node	*new;
-	t_node	*head;
 
 	i = start;
-	j = 0;
-	lst = NULL;
-	head = NULL;
 	while (av[i])
 	{
 		if (ft_spcchk(av[i]))
 		{
-			j = 0;
 			tmp = ft_split(av[i], ' ');
+			j = 0;
 			while (tmp[j])
 			{
-				new = malloc(sizeof(t_node));
-				if (!new)
-					return (NULL);
-				if (!is_valid_number(tmp[j]))
-					error_exit(NULL);
-				val = ft_atol(tmp[j]);
-				if (val > 2147483647 || val < -2147483648)
-					error_exit(NULL);
-				new->value = (int)val;
-				new->next = NULL;
-				new->prev = lst;
-				if (!head)
-				{
-					head = new;
-					new->prev = NULL;
-				}
-				else
-					lst->next = new;
-				lst = new;
+				stack_add_back(stack, (int)parse_value(tmp[j]));
 				j++;
 			}
-			j = 0;
-			while (tmp[j])
-				free(tmp[j++]);
-			free(tmp);
+			free_split(tmp);
 		}
 		else
-		{
-			new = malloc(sizeof(t_node));
-			if (!new)
-				return (NULL);
-			if (!is_valid_number(av[i]))
-				error_exit(NULL);
-			val = ft_atol(av[i]);
-			if (val > 2147483647 || val < -2147483648)
-				error_exit(NULL);
-			new->value = (int)val;
-			new->next = NULL;
-			new->prev = lst;
-			if (!head)
-			{
-				head = new;
-				new->prev = NULL;
-			}
-			else
-				lst->next = new;
-			lst = new;
-		}
+			stack_add_back(stack, (int)parse_value(av[i]));
 		i++;
 	}
-	return (head);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 02:20:58 by mustafa           #+#    #+#             */
-/*   Updated: 2026/05/14 06:49:56 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/05/16 16:25:20 by muaktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft.h"
+# include "stdio.h"
 
 typedef struct s_node
 {
@@ -46,11 +47,8 @@ typedef struct s_config
 }	t_config;
 
 void			sort_medium(t_stack *stack_a, t_stack *stack_b);
-t_stack			*parse_args(int argc, char **argv, t_config *config,
-					t_node *node);
+t_stack			*parse_args(int argc, char **argv, t_config *config);
 void			ft_printf(char *str);
-void			stack_push(t_stack *stack, int data);
-void			stack_pop(t_stack *stack);
 void			stack_free(t_stack *stack);
 int				stack_is_sorted(t_stack *stack);
 t_stack			*stack_new(void);
@@ -74,6 +72,7 @@ unsigned int	find_index(t_node *node, t_stack *stack);
 void			sort_small(t_stack *stack_a, t_stack *stack_b);
 int				parse_flags(int argc, char **argv, t_config *config);
 void			error_exit(t_stack *stack);
-t_node			*ft_reader(char **av, int start);
+void			ft_reader(char **av, int start, t_stack *stack);
+void			stack_add_back(t_stack *stack, int value);
 
 #endif

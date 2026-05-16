@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 17:58:03 by muaktas           #+#    #+#             */
-/*   Updated: 2026/05/14 07:55:50 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/05/16 14:47:40 by muaktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,11 @@ void	exe_strategy(t_stack *stack_a, t_stack *stack_b, t_config *config)
 
 int	main(int ac, char **av)
 {
-	t_node		*lst_a;
 	t_config	config;
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 
-	lst_a = NULL;
-	stack_a = parse_args(ac, av, &config, lst_a);
+	stack_a = parse_args(ac, av, &config);
 	if (!stack_a)
 		return (0);
 	stack_b = stack_new();

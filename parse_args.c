@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:54:36 by muaktas           #+#    #+#             */
-/*   Updated: 2026/05/14 07:33:11 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/05/16 15:50:12 by muaktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,26 +63,7 @@ int	has_duplicate(t_stack *stack)
 	return (0);
 }
 
-static void	finale_stack(t_stack *stack, t_node *lst)
-{
-	t_node	*tmp;
-	int		size;
-
-	stack->size = 0;
-	stack->top = lst;
-	tmp = lst;
-	size = 0;
-	while (tmp)
-	{
-		size++;
-		if (tmp->next == NULL)
-			stack->bottom = tmp;
-		tmp = tmp->next;
-	}
-	stack->size = size;
-}
-
-t_stack	*parse_args(int ac, char **av, t_config *config, t_node *lst_a)
+t_stack	*parse_args(int ac, char **av, t_config *config)
 {
 	int		start;
 	t_stack	*stack_a;
@@ -92,13 +73,10 @@ t_stack	*parse_args(int ac, char **av, t_config *config, t_node *lst_a)
 		return (NULL);
 	if (ft_checker(av + start))
 		error_exit(NULL);
-	lst_a = ft_reader(av, start);
-	if (!lst_a)
-		return (NULL);
 	stack_a = stack_new();
 	if (!stack_a)
 		return (NULL);
-	finale_stack(stack_a, lst_a);
+	ft_reader(av, start, stack_a);
 	if (has_duplicate(stack_a))
 		error_exit(stack_a);
 	return (stack_a);

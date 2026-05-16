@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mustafa <mustafa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muaktas <muaktas@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 17:31:05 by muaktas           #+#    #+#             */
-/*   Updated: 2026/05/03 17:34:11 by mustafa          ###   ########.fr       */
+/*   Updated: 2026/05/16 16:26:22 by muaktas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,47 +25,27 @@ t_stack	*stack_new(void)
 	return (new_stack);
 }
 
-void	stack_push(t_stack *stack, int data)
+void	stack_add_back(t_stack *stack, int value)
 {
 	t_node	*new_node;
 
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 		return ;
-	new_node->value = data;
-	new_node->prev = NULL;
-	new_node->next = stack->top;
+	new_node->value = value;
+	new_node->next = NULL;
+	new_node->prev = stack->bottom;
 	if (stack->size == 0)
 	{
 		stack->top = new_node;
 		stack->bottom = new_node;
-		stack->size = stack->size + 1;
 	}
 	else
 	{
-		stack->top->prev = new_node;
-		stack->top = new_node;
-		stack->size = stack->size + 1;
+		stack->bottom->next = new_node;
+		stack->bottom = new_node;
 	}
-}
-
-void	stack_pop(t_stack *stack)
-{
-	t_node	*tmp;
-
-	tmp = stack->top;
-	if (stack->size == 1)
-	{
-		stack->top = NULL;
-		stack->bottom = NULL;
-	}
-	else
-	{
-		stack->top = stack->top->next;
-		stack->top->prev = NULL;
-	}
-	free(tmp);
-	stack->size = stack->size - 1;
+	stack->size++;
 }
 
 int	stack_is_sorted(t_stack *stack)
@@ -84,11 +64,30 @@ int	stack_is_sorted(t_stack *stack)
 	return (1);
 }
 
+void	delete_node(t_stack *stack)
+{
+	t_node	*tmp;
+
+	tmp = stack->top;
+	if (stack->size == 1)
+	{
+		stack->top = NULL;
+		stack->bottom = NULL;
+	}
+	else
+	{
+		stack->top = stack->top->next;
+		stack->top->prev = NULL;
+	}
+	free(tmp);
+	stack->size = stack->size - 1;
+}
+
 void	stack_free(t_stack *stack)
 {
 	while (stack->top)
 	{
-		stack_pop(stack);
+		delete_node(stack);
 	}
 	free(stack);
 }
